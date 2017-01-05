@@ -27,7 +27,22 @@ Route::get('images', function () {
     return view('pages.images');
 });
 
+Route::get('upload', function () {
+    return view('pages.upload');
+});
+Route::get('/images', 'ImagesController@index');
+
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+
+
+
+
+Route::get('images',
+    ['as' => 'images', 'uses' => 'ImageController@upload']);
+
+
+Route::post('images',
+    ['as' => 'images_store', 'uses' => 'AboutController@store']);

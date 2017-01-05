@@ -46,6 +46,7 @@
                 <li><a href="{{ url('/matches') }}">Matches</a></li>
                 <li><a href="{{ url('/images') }}">Images</a></li>
                 <li><a href="{{ url('/about') }}">About</a></li>
+                <li><a href="{{ url('/upload') }}">Upload</a></li>
             </ul>
 
             <!-- Right Side Of Navbar -->

@@ -2,11 +2,14 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <h1>All images</h1>
+    @foreach ($images as $image)
 
         <div class="panel-body">
-            GEINIG
+            {{ $image->name }}
         </div>
+    @endforeach
 
-    </div>
+
+
 @endsection
