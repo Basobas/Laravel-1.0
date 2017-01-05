@@ -14,3 +14,20 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('about', function () {
+    return view('pages.about');
+});
+
+Route::get('matches', function () {
+    return view('pages.matches');
+});
+
+Route::get('images', function () {
+    return view('pages.images');
+});
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
