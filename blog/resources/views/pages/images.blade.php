@@ -1,15 +1,24 @@
-
 @extends('layouts.app')
 
 @section('content')
-    <h1>All images</h1>
-    @foreach ($images as $image)
+    <div class="imagePage_container">
+        <div class="imagePageTitle">All images</div>
+        <div class="image_container">
+        @foreach ($images as $image)
+            <div class="image">
+                <div class = "image_title">
+                   {{ $image->name }}
+                </div>
 
-        <div class="panel-body">
-            {{ $image->name }}
+                <div id="image_csgo">
+                    <img src="{{url($image->image_url)}}" alt="{{$image->image_url}}" />
+                </div>
+
+                <div class="image_author">
+                    {{ $image->author }}
+                </div>
+            </div>
+        @endforeach
         </div>
-    @endforeach
-
-
-
+    </div>
 @endsection

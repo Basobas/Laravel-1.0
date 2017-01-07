@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
+    <link href="{{ URL::asset('css/images.css') }}" rel="stylesheet">
 
     <!-- Scripts -->
     <script>
@@ -46,7 +47,7 @@
                 <li><a href="{{ url('/matches') }}">Matches</a></li>
                 <li><a href="{{ url('/images') }}">Images</a></li>
                 <li><a href="{{ url('/about') }}">About</a></li>
-                <li><a href="{{ url('/upload') }}">Upload</a></li>
+                <li><a href="{{ url('/images/upload') }}">Upload</a></li>
             </ul>
 
             <!-- Right Side Of Navbar -->
@@ -80,9 +81,9 @@
         </div>
     </div>
 </nav>
-<div class="container">
+{{--<div class="container">--}}
     @yield('content')
-</div>
+{{--</div>--}}
 <!-- Scripts -->
 <script src="/js/app.js"></script>
 </body>

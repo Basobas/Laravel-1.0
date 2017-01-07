@@ -4,7 +4,7 @@
     <div class="container">
 
         <div class="panel-body">
-           HELLLLLLLOOOOOOOOO
+           HEllo
         </div>
 
     </div>
