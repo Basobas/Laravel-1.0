@@ -3,10 +3,13 @@
 namespace App;
 
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+//use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Database\Eloquent\Model;
 
-class User extends Authenticatable
+class User extends Model implements Authenticatable
 {
+    use \Illuminate\Auth\Authenticatable;
     use Notifiable;
 
     /**
@@ -26,4 +29,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function images()
+    {
+        return $this->hasMany('App\Image');
+    }
+
+    public function likes()
+    {
+        return $this->hasMany('App\Like');
+    }
 }

@@ -86,5 +86,6 @@
 {{--</div>--}}
 <!-- Scripts -->
 <script src="/js/app.js"></script>
+<script src="/js/images.js"></script>
 </body>
 </html>

@@ -34,6 +34,10 @@ Route::get('/images', 'ImagesController@index');
 
 Route::get('/home', 'HomeController@index');
 
+//Route::post('/like', 'ImagesController@Like');
+
+Route::post('/imageLike', ['as' => 'like', 'uses' => 'ImagesController@imageLike']);
+
 //
 //Route::get('images',
 //    ['as' => 'images', 'uses' => 'ImagesController@upload']);

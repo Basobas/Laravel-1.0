@@ -40,7 +40,7 @@
     height: 100%;
 }
 
-.image_author{
+#image_footer{
     height: 10%;
     width: 100%;
     text-align: center;
@@ -55,3 +55,10 @@
     color: black;
     font-size: 40px;
 }
+
+#image_footer img {
+    width: 5%;
+    height: 80%;
+}
+
+
