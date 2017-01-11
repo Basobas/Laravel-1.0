@@ -7,32 +7,27 @@
 
 .image{
     background-color: lightgray;
-    width: 49%;
+    width: 32.33%;
     height: 500px;
-    border-style: solid;
-    border-color: black;
-    border-width: 1px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    margin: 0.25%;
 
-    margin-top: 1%;
-    margin-left: 0.5%;
-    margin-right: 0.5%;
 }
 
 .image_title{
-    height: 10%;
+    height: 6%;
     text-align: center;
     width: 100%;
     color: black;
     font-size: 25px;
 }
 #image_csgo{
-    width: 80%;
-    height: 75%;
-    margin-left: 10%;
-    margin-right: 10%;
+    width: 90%;
+    height: 80%;
+    margin-left: 5%;
+    margin-right: 5%;
 }
 
 #image_csgo img {
@@ -45,7 +40,17 @@
     width: 100%;
     text-align: center;
     color: black;
+    font-size: 25px;
+    font-weight: bold;
 }
+
+#image_footer img {
+     width: 8%;
+     height: 90%;
+    margin-left:2%;
+    margin-right:2%;
+ }
+
 .imagePage_container{
     margin-left:2%;
     margin-right:2%;
@@ -56,9 +61,6 @@
     font-size: 40px;
 }
 
-#image_footer img {
-    width: 5%;
-    height: 80%;
-}
+
 
 

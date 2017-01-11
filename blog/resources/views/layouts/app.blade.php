@@ -12,7 +12,7 @@
 
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
-    <link href="{{ URL::asset('css/images.css') }}" rel="stylesheet">
+
 
     <!-- Scripts -->
     <script>
@@ -46,7 +46,6 @@
                 &nbsp;
                 <li><a href="{{ url('/matches') }}">Matches</a></li>
                 <li><a href="{{ url('/images') }}">Images</a></li>
-                <li><a href="{{ url('/about') }}">About</a></li>
                 <li><a href="{{ url('/images/upload') }}">Upload</a></li>
             </ul>
 
@@ -64,11 +63,16 @@
 
                         <ul class="dropdown-menu" role="menu">
                             <li>
+                                <a href="{{ url('/images/myimages') }}">
+                                    My images
+                                </a>
+
                                 <a href="{{ url('/logout') }}"
                                    onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
                                     Logout
                                 </a>
+
 
                                 <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
                                     {{ csrf_field() }}

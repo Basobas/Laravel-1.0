@@ -1,0 +1,45 @@
+.title{
+    font-size: 25px;
+    color: black;
+    margin-left:1%;
+    padding-bottom: 1%;
+}
+
+#image img{
+    width: 75%;
+    height: 60%;
+}
+
+.category{
+    font-size: 15px;
+    color: black;
+    padding-top: 1%;
+}
+.username{
+    font-size: 15px;
+    color: black;
+}
+.description{
+    font-size: 15px;
+    color: black;
+    padding-bottom: 0.5%;
+}
+
+.titleLikes{
+    font-size: 15px;
+    color: black;
+    padding-bottom: 1%;
+ }
+
+.likes{
+    font-size: 15px;
+    color: black;
+    padding-bottom: 4%;
+
+}
+.likes img{
+    width:4%;
+    height:6%;
+    margin-left: 2px;
+    margin-right: 2px;
+}

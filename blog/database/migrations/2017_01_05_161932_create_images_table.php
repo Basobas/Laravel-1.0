@@ -21,7 +21,9 @@ class CreateImagesTable extends Migration
                 $table->string('author');
                 $table->string('details');
                 $table->string('image_url');
-                $table->string('likes');
+                $table->integer('likes');
+                $table->string('category');
+                $table->integer('active')->default(1);
                 $table->timestamps();
             });
         }

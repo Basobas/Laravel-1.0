@@ -18,11 +18,39 @@ class ImagesController extends Controller
         if (Auth::check()) {
 
             $images = Image::all();
+            $images = $images->sortByDesc('likes');
 
             return view('pages.images')->with('images', $images);
 
         } else {
-            return view('auth/login');
+            return view('auth.login');
+        }
+    }
+
+    public function imageDetails($imageId){
+
+        if (Auth::check()) {
+
+            $image = DB::table('images')->where('id', '=', $imageId)->first();
+
+            return view('pages.details')->with('image', $image);
+
+        } else {
+            return view('auth.login');
+        }
+
+    }
+
+    public function userImages(){
+        if (Auth::check()) {
+
+            $user = Auth::user();
+            $userImages = $user->images()->where('user_id', $user->id)->get();
+
+            return view('pages.myimages')->with('images', $userImages);
+
+        } else {
+            return view('auth.login');
         }
     }
 
@@ -32,7 +60,7 @@ class ImagesController extends Controller
             return view('pages.upload');
 
         } else {
-            return view('auth/login');
+            return view('auth.login');
         }
     }
 
@@ -42,7 +70,8 @@ class ImagesController extends Controller
         $user = Auth::user();
 
         DB::table('images')->insert(
-            ['user_id' => $user->id, 'name' => $request->title, 'author' => $request->author, 'details' => $request->description, 'image_url' => $request->image_url, 'likes' => '']
+            ['user_id' => $user->id, 'name' => $request->title, 'author' => $user->name, 'details' => $request->description, 'image_url' => $request->image_url, 'likes' => 0, 'category' => $request->category, 'created_at' =>  \Carbon\Carbon::now(),
+                'updated_at' => \Carbon\Carbon::now()]
         );
 
         return view('pages.upload');
@@ -55,21 +84,43 @@ class ImagesController extends Controller
         $liked = $request['liked'];
         $image = Image::find($image_id);
         $update = false;
+        $total = $image->likes;
+
+
         if(!$image){
             return "geen image";
         }
         $user = Auth::user();
         $like = $user->likes()->where('image_id', $image_id)->first();
+
         if($like){
             $update = true;
             $already_like = $like->like;
             if ($already_like == $liked){
                 $like->delete();
-
-                return "nee";
+                if($liked == 'like'){
+                    $image->likes = $total -1;
+                    $image->update();
+                }
+                else{
+                    $image->likes = $total +1;
+                    $image->update();
+                }
+                return null;
+            }
+            else{
+                if($liked == 'like'){
+                    $image->likes = $total +2;
+                    $image->update();
+                }
+                else{
+                    $image->likes = $total -2;
+                    $image->update();
+                }
             }
         }else{
             $like = new Like();
+
         }
         $like->like = $liked;
         $like->user_id = $user->id;
@@ -79,40 +130,19 @@ class ImagesController extends Controller
             $like->update();
         }else{
             $like->save();
+            if($liked == 'like'){
+                $image->likes = $total +1;
+                $image->update();
+            }
+            else{
+                $image->likes = $total -1;
+                $image->update();
+            }
+
         }
         return "updated of nieuwe aangemaakt";
     }
-//
-//        $likeNow = DB::table('likes')->where([
-//            ['user_id', '=', $UserId],
-//            ['image_id', '=', $image_id]
-//        ])->select('like')->get()->first();
-//
-//        if (!$likeNow) {
-//            DB::table('likes')->insert(
-//                ['user_id' => $UserId, 'image_id' => $image_id, 'like' => $liked]
-//            );
-//
-//            return $liked;
-//        }
-//        else if ($likeNow->like == $liked) {
-//            DB::table('likes')->where([
-//                ['user_id', '=', $UserId],
-//                ['image_id', '=', $image_id]
-//            ])->delete();
-//            $liked = 'default';
-//            return $liked;
-//        }
-//
-//        else {
-//            DB::table('likes')->where([
-//                ['user_id', '=', $UserId],
-//                ['image_id', '=', $image_id]
-//            ])->update(array('like' => $liked));
-//            return $liked;
-//
-//        }
-//    }
+
 }
 
 

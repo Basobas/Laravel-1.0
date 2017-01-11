@@ -15,21 +15,29 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('about', function () {
+Route::get('/about', function () {
     return view('pages.about');
 });
 
-Route::get('matches', function () {
+Route::get('/matches', function () {
     return view('pages.matches');
 });
 
-Route::get('images', function () {
-    return view('pages.images');
-});
+//Route::get('images', function () {
+//    return view('pages.images');
+//});
 
 Route::get('/images/upload', 'ImagesController@edit');
 
+Route::get('/images/edit', function () {
+    return view('pages.edit');
+});
+
 Route::get('/images', 'ImagesController@index');
+Route::get('/images/myimages', 'ImagesController@userImages');
+
+
+Route::get('image/details/{id}', 'ImagesController@imageDetails');
 
 
 Route::get('/home', 'HomeController@index');
@@ -38,12 +46,7 @@ Route::get('/home', 'HomeController@index');
 
 Route::post('/imageLike', ['as' => 'like', 'uses' => 'ImagesController@imageLike']);
 
-//
-//Route::get('images',
-//    ['as' => 'images', 'uses' => 'ImagesController@upload']);
-//
-//
-Route::post('images', ['as' => 'images.store', 'uses' => 'ImagesController@store']);
+Route::post('/images', ['as' => 'images.store', 'uses' => 'ImagesController@store']);
 
 
 Auth::routes();

@@ -11,14 +11,11 @@
         {!! Form::label('Title') !!}
         {!! Form::text('title', null,['required', 'class'=>'form-control', 'placeholder'=>'Title']) !!}
     </div>
-
     <div class="form-group">
-        {!! Form::label('Author') !!}
-        {!! Form::text('author', null,
-            array('required',
-                  'class'=>'form-control',
-                  'placeholder'=>'Your author')) !!}
+        {!! Form::label('Category') !!}
+        {!! Form::select('category', array('Landscape' => 'Landscape', 'Sky' => 'Sky'), 'Landscape', array('class'=>'form-control')) !!}
     </div>
+
 
     <div class="form-group">
         {!! Form::label('Description') !!}
