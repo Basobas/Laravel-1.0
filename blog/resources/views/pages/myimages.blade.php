@@ -35,7 +35,7 @@
                         </div>
                         <div class="image_edit">
                             <h4><b>Edit</b></h4><br>
-                            <div class="editKnop"><a id ="editKnop"href="/images/edit">Edit</a>
+                            <div class="editKnop"><a id ="editKnop"href="{{URL::to('image/edit/'.$image->id)}}">Edit</a>
                             </div>
                         </div>
                     </div>

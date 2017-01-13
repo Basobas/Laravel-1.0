@@ -30,6 +30,8 @@
                     <img src="/imagesButtons/downRed.png"/>
                     {{ $image->likes }}
                     <img src="/imagesButtons/upGreen.png"/>
+
+                    <a href="{{URL::to('ratings/'.$image->id)}}">Show all ratings</a>
                 </div>
 
     </div>

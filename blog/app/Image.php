@@ -4,10 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+
 class Image extends Model
 {
+
+
     protected $fillable = [
-        'user_id', 'name', 'author', 'details', 'image_url', 'likes'
+        'user_id', 'name', 'author', 'details', 'image_url', 'likes', 'image_id'
     ];
 
     //Zorgt voor connectie met database table

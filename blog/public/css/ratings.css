@@ -1,0 +1,73 @@
+.ratings_container{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.rating{
+
+    width: 60%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    margin: auto;
+}
+
+
+.row1{
+    width: 45%;
+    text-align: center;
+    color: black;
+    font-size: 25px;
+    margin-right:5%;
+    background-color: lightgray;
+
+}
+.row2{
+    width: 45%;
+    text-align: center;
+    color: black;
+    font-size: 25px;
+    margin-left:5%;
+    background-color: lightgray;
+
+}
+
+.image_likes{
+    width: 20%;
+    height: 80%;
+
+    text-align: center;
+}
+
+.usernames{
+    margin-top:5%;
+    padding-top:5%;
+    height: 10%;
+
+
+}
+.images{
+    margin-top:5%;
+    height: 10%;
+
+}
+.image_title{
+    font-weight: bold;
+    font-size:30px;
+    text-align: center;
+    margin-bottom: 2%;
+}
+.titel_user{
+    font-weight: bold;
+    font-size:30px;
+
+
+}
+.titel_like{
+    font-weight: bold;
+    font-size:30px;
+
+}

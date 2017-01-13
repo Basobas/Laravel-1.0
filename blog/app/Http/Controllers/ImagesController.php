@@ -8,6 +8,9 @@ use App\Http\Controllers\Controller;
 use App\Image;
 use Illuminate\Support\Facades\Auth;
 use App\Like;
+use App\User;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Redirect;
 
 
 
@@ -45,6 +48,7 @@ class ImagesController extends Controller
         if (Auth::check()) {
 
             $user = Auth::user();
+
             $userImages = $user->images()->where('user_id', $user->id)->get();
 
             return view('pages.myimages')->with('images', $userImages);
@@ -54,28 +58,81 @@ class ImagesController extends Controller
         }
     }
 
-    public function edit()
+    public function edit($id)
     {
         if (Auth::check()) {
-            return view('pages.upload');
+
+            $test = Image::where('id', '=', $id)->get()->first();
+
+            return View::make('pages.edit')->with('test', $test);
 
         } else {
             return view('auth.login');
         }
     }
+    public function ImageUpdate(Request $request){
+
+
+        DB::table('images')->where('id', '=', $request->id)->update(
+            ['name' => $request->title, 'details' => $request->description, 'image_url' => $request->image_url, 'category' => $request->category,
+                'updated_at' => \Carbon\Carbon::now()]
+        );
+            return Redirect::to('image/details/'.$request->id);
+    }
 
 
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'title' => 'max:50',
+            'description'=> 'max:255'
+        ]);
+
         $user = Auth::user();
+
 
         DB::table('images')->insert(
             ['user_id' => $user->id, 'name' => $request->title, 'author' => $user->name, 'details' => $request->description, 'image_url' => $request->image_url, 'likes' => 0, 'category' => $request->category, 'created_at' =>  \Carbon\Carbon::now(),
                 'updated_at' => \Carbon\Carbon::now()]
         );
 
-        return view('pages.upload');
+        return redirect()->route('images');
     }
+
+
+    public function ratingsImage($imageId)
+    {
+
+        if (Auth::check()) {
+
+            $image = Image::where('id', '=', $imageId)->first();
+            $userId = $image->likes()->where('image_id', '=', $imageId)->pluck('user_id');
+
+            $length = count($userId);
+
+            for ($x = 0; $x < $length; $x++) {
+                $usernames[] = User::where('id', '=', $userId[$x])->value('name');
+            }
+
+
+            $title = Image::where('id', '=', $imageId)->value('name');
+
+            $ratings = $image->likes()->where('image_id', '=', $imageId)->get();
+            $ratingexist =  $image->likes()->where('image_id', '=', $imageId)->get()->first();
+
+            if(!$ratingexist){
+                return view('pages.ratings')->with(compact('ratingexist', 'title'));
+            }
+            else{
+                return view('pages.ratings')->with(compact('ratings', 'title', 'usernames','ratingexist'));
+            }
+
+        } else {
+            return view('auth.login');
+        }
+
+    }
+
 
 
     public function imageLike(Request $request)

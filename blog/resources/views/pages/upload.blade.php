@@ -5,7 +5,7 @@
     <h1>Upload here your image</h1>
     <br>
 
-    {!! Form::open(array('route' => 'images.store', 'class' => 'form')) !!}
+    {!! Form::open(array('route' => 'images.store', 'class' => 'form',)) !!}
 
     <div class="form-group">
         {!! Form::label('Title') !!}
@@ -16,7 +16,6 @@
         {!! Form::select('category', array('Landscape' => 'Landscape', 'Sky' => 'Sky'), 'Landscape', array('class'=>'form-control')) !!}
     </div>
 
-
     <div class="form-group">
         {!! Form::label('Description') !!}
         {!! Form::textarea('description', null,
@@ -26,18 +25,20 @@
     </div>
 
     <div class="form-group">
-        {!! Form::label('Image Url') !!}
+        {!! Form::label('Image url') !!}
         {!! Form::text('image_url', null,
             array('required',
                   'class'=>'form-control',
                   'placeholder'=>'Put in your image url')) !!}
     </div>
-
     <br>
+    <div class = "test">
     <div class="form-group">
         {!! Form::submit('Upload!',
           array('class'=>'btn btn-primary')) !!}
     </div>
+    </div>
     {!! Form::close() !!}
 </div>
+
 @endsection
