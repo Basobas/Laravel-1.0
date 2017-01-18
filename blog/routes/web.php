@@ -40,7 +40,6 @@ Route::get('/images/edit', function () {
 Route::get('image/edit/{id}', ['as' => 'images.edit', 'uses' => 'ImagesController@edit']);
 Route::post('image/edit/{id}', ['as' => 'images.edit', 'uses' => 'ImagesController@ImageUpdate']);
 
-
 Route::get('/images', ['as' => 'images', 'uses' => 'ImagesController@index']);
 Route::get('/images/myimages', 'ImagesController@userImages');
 
@@ -53,6 +52,11 @@ Route::get('/home', 'HomeController@index');
 //Route::post('/like', 'ImagesController@Like');
 
 Route::post('/imageLike', ['as' => 'like', 'uses' => 'ImagesController@imageLike']);
+
+
+
+Route::post('/ImageActive', ['as' => 'active', 'uses' => 'ImagesController@ImageActive']);
+
 
 Route::post('/save_image', ['as' => 'images.store', 'uses' => 'ImagesController@store']);
 

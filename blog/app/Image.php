@@ -10,7 +10,7 @@ class Image extends Model
 
 
     protected $fillable = [
-        'user_id', 'name', 'author', 'details', 'image_url', 'likes', 'image_id'
+        'user_id', 'name', 'author', 'details', 'image_url', 'likes', 'image_id', 'active'
     ];
 
     //Zorgt voor connectie met database table

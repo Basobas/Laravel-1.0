@@ -1,4 +1,5 @@
 <link href="{{ URL::asset('css/myimages.css') }}" rel="stylesheet">
+
 @extends('layouts.app')
 
 @section('content')
@@ -24,8 +25,16 @@
                             <h4>{{ $image->likes }}</h4>
 
                         </div>
+
                         <div class="image_active" >
                             <h4><b>Active</b></h4><br>
+
+                            <button onclick ="ImageActivate('{{ $image->id}}','active', this)" type="button" class="btn btn-default">
+                                @if($image->active == 1)Make inactive
+                                @else
+                                Make active
+                                @endif
+                            </button>
 
                         </div>
                         <div class="image_date">

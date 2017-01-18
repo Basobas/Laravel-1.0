@@ -58,6 +58,30 @@ class ImagesController extends Controller
         }
     }
 
+    public function ImageActive(Request $request)
+    {
+
+        if (Auth::check()) {
+
+            $image_id = $request['id'];
+
+
+            $active = DB::table('images')->where('id', '=', $image_id)->first();
+
+
+            if ($active->active == 1){
+                DB::table('images')->where('id', '=', $image_id)->update(['active' => 0]);
+                return 'inactive';
+            }
+            else{
+                DB::table('images')->where('id', '=', $image_id)->update(['active' => 1]);
+                return 'active';
+            }
+        }
+
+    }
+
+
     public function edit($id)
     {
         if (Auth::check()) {
@@ -135,6 +159,7 @@ class ImagesController extends Controller
 
 
 
+
     public function imageLike(Request $request)
     {
         $image_id = $request['imageId'];
@@ -163,7 +188,7 @@ class ImagesController extends Controller
                     $image->likes = $total +1;
                     $image->update();
                 }
-                return null;
+
             }
             else{
                 if($liked == 'like'){
@@ -175,7 +200,9 @@ class ImagesController extends Controller
                     $image->update();
                 }
             }
-        }else{
+        }
+
+        else{
             $like = new Like();
 
         }
@@ -197,7 +224,7 @@ class ImagesController extends Controller
             }
 
         }
-        return "updated of nieuwe aangemaakt";
+        return $image->likes;
     }
 
 }
