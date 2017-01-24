@@ -11,6 +11,30 @@
 |
 */
 
+//routes image edit
+Route::get('image/edit/{id}', ['as' => 'images.edit', 'uses' => 'ImagesController@edit']);
+Route::post('image/edit/{id}', ['as' => 'images.edit', 'uses' => 'ImagesController@ImageUpdate']);
+
+//routes my image
+Route::get('/images/myimages', 'ImagesController@userImages');
+Route::post('/ImageActive', ['as' => 'active', 'uses' => 'ImagesController@ImageActive']);
+
+//route all images
+//Route::get('/images', ['as' => 'images', 'uses' => 'ImagesController@index']);
+Route::get('/images', ['as' => 'images.search', 'uses' => 'ImagesController@index']);
+Route::post('/imageLike', ['as' => 'like', 'uses' => 'ImagesController@imageLike']);
+
+//Details and ratings for image
+Route::get('image/details/{id}', 'ImagesController@imageDetails');
+Route::get('/ratings/{id}', 'ImagesController@ratingsImage');
+
+
+//upload
+Route::post('/save_image', ['as' => 'images.store', 'uses' => 'ImagesController@store']);
+
+
+Route::get('/home', 'HomeController@index');
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -23,47 +47,10 @@ Route::get('/matches', function () {
     return view('pages.matches');
 });
 
-//Route::get('images', function () {
-//    return view('pages.images');
-//});
-
-
 
 Route::get('/images/upload', function(){
     return view('pages.upload');
 });
-
-Route::get('/images/edit', function () {
-    return view('pages.edit');
-});
-
-Route::get('image/edit/{id}', ['as' => 'images.edit', 'uses' => 'ImagesController@edit']);
-Route::post('image/edit/{id}', ['as' => 'images.edit', 'uses' => 'ImagesController@ImageUpdate']);
-
-Route::get('/images', ['as' => 'images', 'uses' => 'ImagesController@index']);
-Route::get('/images/myimages', 'ImagesController@userImages');
-
-
-Route::get('image/details/{id}', 'ImagesController@imageDetails');
-
-
-Route::get('/home', 'HomeController@index');
-
-//Route::post('/like', 'ImagesController@Like');
-
-Route::post('/imageLike', ['as' => 'like', 'uses' => 'ImagesController@imageLike']);
-
-
-
-Route::post('/ImageActive', ['as' => 'active', 'uses' => 'ImagesController@ImageActive']);
-
-
-Route::post('/save_image', ['as' => 'images.store', 'uses' => 'ImagesController@store']);
-
-//Route::post(/)
-
-
-Route::get('/ratings/{id}', 'ImagesController@ratingsImage');
 
 
 Auth::routes();

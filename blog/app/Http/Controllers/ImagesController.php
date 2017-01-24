@@ -16,19 +16,20 @@ use Illuminate\Support\Facades\Redirect;
 
 class ImagesController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         if (Auth::check()) {
+            $query = $request['search'];
 
-            $images = Image::all();
-            $images = $images->sortByDesc('likes');
+            $images = DB::table('images')->where('name', 'LIKE', '%' . $query . '%')->paginate(10)->sortByDesc('likes');
 
             return view('pages.images')->with('images', $images);
-
-        } else {
+        }
+        else {
             return view('auth.login');
         }
     }
+
 
     public function imageDetails($imageId){
 

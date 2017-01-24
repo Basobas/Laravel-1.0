@@ -5,6 +5,12 @@
 @section('content')
 
     <div class="imagePage_container">
+        {!! Form::open(array('route' => 'images.search', 'method'=> 'GET', 'class'=>'form navbar-form searchform', 'role' => 'search')) !!}
+        {!! Form::text('search', '', array('class'=>'form-control', 'placeholder'=>'Search...')) !!}
+        {!! Form::submit('Search', array('class'=>'btn btn-default')) !!}
+        {!! Form::close() !!}
+
+
         <div class="imagePageTitle">All images</div>
         <div class="image_container">
         @foreach ($images as $image)
