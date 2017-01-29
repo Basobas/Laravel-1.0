@@ -19,15 +19,27 @@ class ImagesController extends Controller
     public function index(Request $request)
     {
         if (Auth::check()) {
+            $user = Auth::user();
+            $userimages = DB::table('images')->where('user_id', '=', $user->id)->get();
+            $amountimages = count($userimages);
+
             $query = $request['search'];
+            $query2 = $request['category'];
 
-            $images = DB::table('images')->where('name', 'LIKE', '%' . $query . '%')->paginate(10)->sortByDesc('likes');
+            if ($query2 == '') {
+                $images = DB::table('images')->where('name', 'LIKE', '%' . $query . '%')->paginate(50)->sortByDesc('likes');
+                return view('pages.images')->with(compact('images', 'amountimages'));
+            } else {
+                $images = DB::table('images')->where('category', '=', $query2)->paginate(50)->sortByDesc('likes');
+                return view('pages.images')->with(compact('images', 'amountimages'));
+            }
 
-            return view('pages.images')->with('images', $images);
         }
+
         else {
             return view('auth.login');
         }
+
     }
 
 
@@ -82,22 +94,47 @@ class ImagesController extends Controller
 
     }
 
+    public function adminActive(Request $request){
+        $user = Auth::user();
+        if (Auth::check() && $user->admin == 1){
+
+            $user_id = $request['id'];
+
+            $active = DB::table('users')->where('id', '=', $user_id)->first();
+
+
+            if ($active->active == 1){
+                DB::table('users')->where('id', '=', $user_id)->update(['active' => 0]);
+                return 'inactive';
+            }
+            else{
+                DB::table('users')->where('id', '=', $user_id)->update(['active' => 1]);
+                return 'active';
+            }
+        }
+        else{
+            return view('auth.login');
+        }
+    }
+
+
+
 
     public function edit($id)
     {
         if (Auth::check()) {
-
-            $test = Image::where('id', '=', $id)->get()->first();
-
-            return View::make('pages.edit')->with('test', $test);
+            $user = Auth::user();
+            $image = Image::where('id', '=', $id)->get()->first();
+            if ($user->id == $image->user_id)
+                return View::make('pages.edit')->with('image', $image);
+            else
+                return view('errors.imageError');
 
         } else {
             return view('auth.login');
         }
     }
     public function ImageUpdate(Request $request){
-
-
         DB::table('images')->where('id', '=', $request->id)->update(
             ['name' => $request->title, 'details' => $request->description, 'image_url' => $request->image_url, 'category' => $request->category,
                 'updated_at' => \Carbon\Carbon::now()]
@@ -108,22 +145,35 @@ class ImagesController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'title' => 'max:50',
-            'description'=> 'max:255'
-        ]);
+        if (Auth::check()) {
+            $this->validate($request, [
+                'title' => 'max:50',
+                'description' => 'max:255'
+            ]);
 
-        $user = Auth::user();
+            $user = Auth::user();
 
 
-        DB::table('images')->insert(
-            ['user_id' => $user->id, 'name' => $request->title, 'author' => $user->name, 'details' => $request->description, 'image_url' => $request->image_url, 'likes' => 0, 'category' => $request->category, 'created_at' =>  \Carbon\Carbon::now(),
-                'updated_at' => \Carbon\Carbon::now()]
-        );
+            DB::table('images')->insert(
+                ['user_id' => $user->id, 'name' => $request->title, 'author' => $user->name, 'details' => $request->description, 'image_url' => $request->image_url, 'likes' => 0, 'category' => $request->category, 'created_at' => \Carbon\Carbon::now(),
+                    'updated_at' => \Carbon\Carbon::now()]
+            );
 
-        return redirect()->route('images');
+            return redirect()->route('images.search');
+        }
+        else{
+            return view('auth.login');
+        }
     }
 
+    public function imageUpload(){
+        if (Auth::check()) {
+            return view('pages.upload');
+        }
+        else{
+            return view('auth.login');
+        }
+    }
 
     public function ratingsImage($imageId)
     {

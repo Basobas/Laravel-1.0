@@ -21,6 +21,7 @@
             </div>
 
                 @else
+            <a href="/images?category=Abstract&search="><h4>Abstract</h4></a>
             <div class="image_container">
                 @foreach ($abstracts as $abstract)
                     <div class="image" id="{{$abstract->id}}">
@@ -35,6 +36,7 @@
                 @endforeach
             </div>
 
+            <a href="/images?category=Art&search="><h4>Art</h4></a>
             <div class="image_container">
                 @foreach ($arts as $art)
 
@@ -50,6 +52,7 @@
                 @endforeach
             </div>
 
+            <a href="/images?category=Animals&search="><h4>Animals</h4></a>
             <div class="image_container">
                 @foreach ($animals as $animal)
 
@@ -64,6 +67,7 @@
                     </div>
                 @endforeach
             </div>
+            <a href="/images?category=Nature&search="><h4>Nature</h4></a>
             <div class="image_container">
                 @foreach ($natures as $nature)
 
@@ -79,11 +83,13 @@
                 @endforeach
             </div>
 
+            <a href="/images?category=Technology&search="><h4>Technology</h4></a>
             <div class="image_container">
                 @foreach ($technologys as $technology)
 
                     <div class="image4" id="{{$technology->id}}">
                         <div class = "image_title">
+                            {{ $technology->name}}
                         </div>
 
                         <div id="image_csgo" >
