@@ -20,7 +20,6 @@ Route::get('/images/myimages', 'ImagesController@userImages');
 Route::post('/ImageActive', ['as' => 'active', 'uses' => 'ImagesController@ImageActive']);
 
 //route all images
-//Route::get('/images', ['as' => 'images', 'uses' => 'ImagesController@index']);
 Route::get('/images', ['as' => 'images.search', 'uses' => 'ImagesController@index']);
 Route::post('/imageLike', ['as' => 'like', 'uses' => 'ImagesController@imageLike']);
 
@@ -29,15 +28,17 @@ Route::get('image/details/{id}', 'ImagesController@imageDetails');
 Route::get('/ratings/{id}', 'ImagesController@ratingsImage');
 
 
-//upload
+//Upload
 Route::post('/save_image', ['as' => 'images.store', 'uses' => 'ImagesController@store']);
+
+//Admin routes
+Route::get('/admin', 'AdminController@index');
+Route::post('/userActive', ['as' => 'active', 'uses' => 'ImagesController@adminActive']);
 
 
 Route::get('/home', 'HomeController@index');
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@index');
 
 Route::get('/about', function () {
     return view('pages.about');
@@ -48,9 +49,7 @@ Route::get('/matches', function () {
 });
 
 
-Route::get('/images/upload', function(){
-    return view('pages.upload');
-});
+Route::get('/images/upload', 'ImagesController@imageUpload');
 
 
 Auth::routes();

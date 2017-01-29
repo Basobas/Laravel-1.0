@@ -14,19 +14,20 @@ use Illuminate\Support\Facades\Redirect;
 
 
 
-class SearchController extends Controller
+class AdminController extends Controller
 {
     public function index()
     {
-        if (Auth::check()) {
+       $user = Auth::user();
+        if (Auth::check() && $user->admin == 1) {
 
-            $images = Image::all();
-            $images = $images->sortByDesc('likes');
 
-            return view('pages.images')->with('images', $images);
+            $users = DB::table('users')->get();
 
+            return view('admin.control')->with('users', $users);
         } else {
             return view('auth.login');
         }
     }
+
 }

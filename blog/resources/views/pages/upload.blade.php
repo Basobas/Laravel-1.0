@@ -13,7 +13,7 @@
     </div>
     <div class="form-group">
         {!! Form::label('Category') !!}
-        {!! Form::select('category', array('Landscape' => 'Landscape', 'Sky' => 'Sky'), 'Landscape', array('class'=>'form-control')) !!}
+        {!! Form::select('category', array('Abstract' => 'Abstract', 'Art' => 'Art', 'Animals' => 'Animals', 'Nature' => 'Nature', 'Technology' => 'Technology'), 'Abstract', array('class'=>'form-control')) !!}
     </div>
 
     <div class="form-group">

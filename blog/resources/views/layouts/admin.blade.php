@@ -12,12 +12,12 @@
 
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
-
+    <link href="/css/controlpanel.css" rel="stylesheet">
 
     <!-- Scripts -->
     <script>
         window.Laravel = <?php echo json_encode([
-                'csrfToken' => csrf_token(),
+            'csrfToken' => csrf_token(),
         ]); ?>
     </script>
 </head>
@@ -44,9 +44,7 @@
             <!-- Left Side Of Navbar -->
             <ul class="nav navbar-nav">
                 &nbsp;
-                {{--<li><a href="{{ url('/matches') }}">Matches</a></li>--}}
                 <li><a href="{{ url('/images') }}">Images</a></li>
-                <li><a href="{{ url('/images/upload') }}">Upload</a></li>
             </ul>
 
             <!-- Right Side Of Navbar -->
@@ -86,7 +84,7 @@
     </div>
 </nav>
 {{--<div class="container">--}}
-    @yield('content')
+@yield('content')
 {{--</div>--}}
 <!-- Scripts -->
 <script src="/js/app.js"></script>

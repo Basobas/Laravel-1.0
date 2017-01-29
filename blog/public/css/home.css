@@ -1,0 +1,114 @@
+.image_container{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+.image_container2{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.image{
+    background-color: lightgray;
+    width: 32.33%;
+    height: 45%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 0.25%;
+}
+.image2{
+    background-color: lightgray;
+    width: 32.33%;
+    height: 45%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 0.25%;
+}
+.image1{
+    background-color: lightgray;
+    width: 32.33%;
+    height: 45%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 0.25%;
+}
+.image3{
+    background-color: lightgray;
+    width: 32.33%;
+    height: 45%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 0.25%;
+}
+.image4{
+    background-color: lightgray;
+    width: 32.33%;
+    height: 45%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 0.25%;
+}
+.image_title{
+    height: 5%;
+    text-align: center;
+    width: 100%;
+    color: black;
+    font-size: 25px;
+}
+#image_csgo{
+    width: 90%;
+    height: 80%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+#image_csgo img {
+    width: 100%;
+    height: 100%;
+}
+
+#image_footer{
+    height: 10%;
+    width: 100%;
+    text-align: center;
+    color: black;
+    font-size: 25px;
+    font-weight: bold;
+
+}
+
+#image_footer img {
+    width: 40px;
+    height: 48px;
+    margin-left:5%;
+    margin-right:5%;
+    margin-top:-1.5%;
+}
+
+.imagePage_container{
+    margin-left:2%;
+    margin-right:2%;
+}
+.imagePageTitle{
+    text-align: center;
+    color: black;
+    font-size: 40px;
+}
+
+.total {
+    text-align: center;
+    color: black;
+    font-size: 25px;
+    font-weight: bold;
+    height: 10%;
+    width: 100%;
+
+}
+
+
